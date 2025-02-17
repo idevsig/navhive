@@ -81,7 +81,7 @@ EOF
 
 # 获取发布目录
 get_publish_dir() {
-  PUBLISH_DIR="$(grep output_dir config.toml | awk -F '\"' '{print $2}')" # static files
+  PUBLISH_DIR="$(grep publishDir config.toml | awk -F '\"' '{print $2}')" # static files
 }
 
 # 获取项目名称
@@ -296,7 +296,7 @@ process_icons() {
   if [ -z "$url" ] && [ -z "$favicon_url" ]; then
     return
   fi
-
+  
   # 生成文件名
   local cleaned_name
   cleaned_name=$(echo "$logo" | tr -d '[:space:]')
@@ -418,7 +418,7 @@ main() {
     fi
   fi
 
-  # remove zola old data
+  # remove hugo old data
   rm -rf "$PUBLISH_DIR"  
 
   echo
@@ -429,10 +429,11 @@ main() {
   echo "GIT_BRANCH_NAME: $GIT_BRANCH_NAME"
   echo
 
-  zola build
+  # hugo gen data
+  hugo --minify
 
   if [ ! -d "$PUBLISH_DIR" ]; then
-      echo -e "\033[31moutput_dir $PUBLISH_DIR not found\033[0m"
+      echo -e "\033[31mpublishDir $PUBLISH_DIR not found\033[0m"
       exit 1
   fi    
 
