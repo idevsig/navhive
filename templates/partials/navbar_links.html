@@ -1,0 +1,25 @@
+{% set data = load_data(path="data/headers.yml", format="yaml") %}
+{% if data %}
+<ul class="navbar-nav site-menu nav-top">
+    {% for item in data %}
+    <li class="menu-item-has-children">
+        <a href="{{ item.link | default(value='') }}" target="_blank" title='{{ item.item }}'>
+            <i class="{{ item.icon | default(value='') }} icon-fw mr-2"></i>
+            <span>{{ item.item }}</span>
+        </a>
+        {% if item.list %}
+        <ul>
+            {% for link in item.list %}
+            <li>
+                <a href="{{ link.url }}" target="_blank" title='{{ link.name }}'>
+                    <i class="{{ link.icon | default(value='') }} icon-fw mr-2"></i>
+                    <span> {{ link.name }}</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+    {% endfor %}    
+</ul>
+{% endif %}

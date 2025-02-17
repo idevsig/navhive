@@ -1,0 +1,51 @@
+base_url = "https://nav.idev.top"
+
+title = "爱开发精选导航"
+
+description = ""
+
+default_language = "zh-CN"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = false
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = false
+
+theme = "navhive"
+
+output_dir = "public"
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+[extra]
+    author        = "Jetsung Chan"
+    submit        = ""                                   # 左侧导航栏的"网站提交"
+    about         = "https://forum.idev.top/p/about"     # 左侧导航栏的"关于导航"页面(./about)    
+    enablePreLoad = true		    		             # 网站完全打开前预加载动画
+    textPreLoad   = "爱开发精选导航" 		                # 预加载的动画文字, 只有当enablePreLoad=true时生效    
+    expandSidebar = true                                 # 默认展开左侧边导航栏
+    displayMode   = 2                                    # 显示模式，0.日间模式，1.深色(夜间)模式。2.实时模式，３.日间模式，４.夜间模式
+
+[extra.seo]
+    keywords      = "开发导航,程序员导航,技术资源导航,AI工具导航"
+    description   = "爱开发精选导航 - 收录优质开发者工具、技术社区、云服务、AI平台等资源"
+
+[extra.images]
+    favicon           = "favicon.ico"
+    logosPath         = "assets/images/logos"			     # 网站每个导航地址logo存放地址
+    defaultLogo       = "assets/images/default.webp"     
+    logoExpandLight   = "assets/images/bt8-expand-light.png"
+    logoExpandDark    = "assets/images/bt8-expand-dark.png"
+    logoCollapseLight = "assets/images/bt.png"
+    logoCollapseDark  = "assets/images/bt.png"    
+
+[extra.analytics]
+    a51laid = "" # 51.LA 网站统计
+    a51lack = "" #
+
+[extra.footer]
+    copyright = ''

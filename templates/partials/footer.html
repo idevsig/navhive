@@ -1,0 +1,28 @@
+<footer class="main-footer footer-type-1 text-xs">
+	<div id="footer-tools" class="d-flex flex-column">
+		<a href="javascript: void(0);" id="to-up" class="btn rounded-circle go-up m-1" data-toggle="tooltip" data-placement="left" title="返回顶部">
+			<i class="fas fa-chevron-up"></i>
+		</a>
+
+		{% set displayMode = config.extra.displayMode %}
+		{% if displayMode <= 0 or displayMode > 4 %}
+			{% set displayMode = 0 %}
+		{% endif %}
+		<a href="javascript: void(0);" id="NightMode" data="{{ displayMode }}" class="btn rounded-circle switch-dark-mode m-1" data-toggle="tooltip" data-placement="left" title="日间模式">
+			<i class="fas fa-sun mode-ico"></i>
+		</a>
+	</div>
+	{% set footer = config.extra.footer %}
+    {% if footer %}
+	<div class="footer-inner">
+		<div class="footer-text">
+			{% set copyright = footer.copyright %}
+			{% if not copyright %}
+				&copy; {{ now() | date(format="%Y") }} Powered by <a href="https://www.getzola.org/" target="_blank" rel="noopener">Zola</a> &amp; <a href="https://github.com/idevsig/navside" target="_blank" rel="noopener" title="NavSide">NavSide</a>
+			{% else %}
+				{{ copyright | replace(from="{year}", to=now() | date(format="%Y")) | markdown | safe }}
+			{% endif %}
+		</div>
+	</div>
+    {% endif %}
+</footer>

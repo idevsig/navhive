@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+  <head>
+    {% include "partials/head.html" ignore missing %}
+  </head>
+
+<body >
+{# 加载页 #}
+{% include "partials/loading.html" ignore missing %}
+
+  <div class="page-container">
+  {# 侧边栏 #}
+  {% include "partials/sidebar.html" ignore missing %}
+
+    <div class="main-content flex-fill not">
+    {% include "partials/navbar.html" ignore missing %}
+
+    {# Post page is the default #}
+    {% block main_content %}
+        Nothing here?!
+    {% endblock main_content %}    
+    </div>
+  
+  </div>
+
+  {# 页脚 #}
+  {% include "partials/footer.html" ignore missing %}
+  {# 底部 #}
+  {% include "partials/foot.html" ignore missing %}
+</body>
+</html>    

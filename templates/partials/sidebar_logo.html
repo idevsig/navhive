@@ -1,0 +1,26 @@
+{% set title = config.title | safe %}
+{% set logoExpandLight = config.extra.images.logoExpandLight %}
+{% set logoExpandDark = config.extra.images.logoExpandDark %}
+{% set logoCollapseLight = config.extra.images.logoCollapseLight %}
+{% set logoCollapseDark = config.extra.images.logoCollapseDark %}
+
+<div class="sidebar-logo border-bottom border-color">
+    <div class="logo overflow-hidden">
+        <a href="/" class="logo-expanded">
+            {% if logoExpandLight %}
+            <img src="{{ get_url(path=logoExpandLight, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-light">
+            {% endif %}
+            {% if logoExpandDark %}
+            <img src="{{ get_url(path=logoExpandDark, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-dark d-none">
+            {% endif %}
+        </a>
+        <a href="/" class="logo-collapsed">
+            {% if logoCollapseLight %}
+            <img src="{{ get_url(path=logoCollapseLight, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-light">
+            {% endif %}
+            {% if logoCollapseDark %}
+            <img src="{{ get_url(path=logoCollapseDark, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-dark d-none">
+            {% endif %}
+        </a>
+    </div>
+</div>

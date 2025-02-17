@@ -1,0 +1,13 @@
+<h4 class="text-gray text-lg mb-4" id="friendlink">
+    <i class="iconfont icon-book-mark-line icon-lg mr-2"></i>友情链接
+</h4>
+<div class="friendlink text-xs card">
+    <div class="card-body">
+        {% set data = load_data(path="data/friendlinks.yml", format="yaml") %}
+        {% if data %}
+            {% for item in data %}        
+            <a href="{{ item.url }}" title="{{ item.description }}" target="_blank">{{ item.title }}</a>
+            {% endfor %}
+        {% endif %}  
+    </div>
+</div>

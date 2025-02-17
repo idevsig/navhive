@@ -1,0 +1,28 @@
+<div class="border-top py-2 border-color">
+	<div class="flex-bottom">
+		<ul>
+			{% if config.extra.submit %}
+			<li class="sidebar-item">
+				<a rel="noopener" href="{{ config.extra.submit }}" target="_blank">
+					<i class="fas fa-plus-square fa-lg icon-fw icon-lg mr-2"></i>
+					<span>网站提交</span>
+				</a>
+			</li>
+			{% endif %}
+			<li class="sidebar-item">
+				<a rel="noopener" href="#friendlink">
+					<i class="fas fa-user-friends fa-lg icon-fw icon-lg mr-2"></i>
+					<span>友情链接</span>
+				</a>
+			</li>
+			{% if config.extra.about %}
+			<li class="sidebar-item">
+				<a rel="noopener" href="{{ config.extra.about }}" target="_blank">
+					<i class="fas fa-info-circle fa-lg icon-fw icon-lg mr-2"></i>
+					<span>关于导航</span>
+				</a>
+			</li>
+			{% endif %}
+		</ul>
+	</div>
+</div>
