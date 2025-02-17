@@ -43,7 +43,7 @@ git submodule foreach git pull origin main
 
 1. 复制 `exampleSite`   
 ```sh
-cp -r themes/navhive/exampleSite .
+cp -r themes/navhive/exampleSite/* .
 ```
 
 2. 设置数据
