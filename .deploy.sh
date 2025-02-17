@@ -2,8 +2,7 @@
 
 # https://github.com/idevsig/navsites/blob/main/.deploy.sh
 
-# set -euo pipefail
-set -eux
+set -euo pipefail
 
 IN_CHINA="${CHINA:-}"
 
@@ -294,7 +293,7 @@ process_icons() {
     return
   fi
 
-  if [ -z "$url" ] || [ -z "$favicon_url" ]; then
+  if [ -z "$url" ] && [ -z "$favicon_url" ]; then
     return
   fi
 
