@@ -17,7 +17,7 @@
   https://nav.idev.top
 - 本地演示   
 ```sh
-hugo server --source=exampleSite
+zola serve
 ```
 
 ## 安装

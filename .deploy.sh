@@ -430,12 +430,12 @@ main() {
   echo "GIT_BRANCH_NAME: $GIT_BRANCH_NAME"
   echo
 
-  # zola build
+  zola build
 
-  # if [ ! -d "$PUBLISH_DIR" ]; then
-  #     echo -e "\033[31moutput_dir $PUBLISH_DIR not found\033[0m"
-  #     exit 1
-  # fi    
+  if [ ! -d "$PUBLISH_DIR" ]; then
+      echo -e "\033[31moutput_dir $PUBLISH_DIR not found\033[0m"
+      exit 1
+  fi    
 
   # if [ -z "$IN_CHINA" ]; then
   #   check_in_china
