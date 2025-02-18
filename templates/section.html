@@ -78,7 +78,10 @@
 											alt="{{ ele.title }}">
 										{% else %}
                                             {% if logoUrl %}
-                                            <img class="lazy" src="{{ config.extra.images.logosPath }}/{{ logoUrl }}" alt="{{ ele.title }}">
+                                            <img class="lazy" 
+                                                src="{{ config.extra.images.logosPath }}/{{ logoUrl }}" 
+                                                onerror="javascript: this.src='{{ defaultLogo }}'"
+                                                alt="{{ ele.title }}">
                                             {% else %}
                                             <img class="lazy" src="{{ defaultLogo }}" alt="{{ ele.title }}">
                                             {% endif %}
