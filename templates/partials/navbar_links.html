@@ -1,17 +1,32 @@
 {% set data = load_data(path="content/headers.yml", format="yaml") %}
 {% if data %}
 <ul class="navbar-nav site-menu nav-top">
+    {% set target_blank = ["new", "blank", "_blank"] %}
     {% for item in data %}
+    {% set target = "_self" %}
+    {% if item.target %}
+        {% if item.target in target_blank %}
+            {% set target = "_blank" %}
+        {% endif %}
+    {% endif %}
     <li class="menu-item-has-children">
-        <a href="{{ item.link | default(value='') }}" target="_blank" title='{{ item.item }}'>
+        <a href="{{ item.link | default(value='javascript: void(0);') }}" target="{{ target }}" title='{{ item.item }}'>
             <i class="{{ item.icon | default(value='') }} icon-fw mr-2"></i>
             <span>{{ item.item }}</span>
         </a>
         {% if item.list %}
         <ul>
             {% for link in item.list %}
+            {% set target_sub = "_self" %}
+            {% if link.target %}
+                {% if link.target in target_blank %}
+                    {% set target_sub = "_blank" %}
+                {% endif %}
+            {% endif %}            
             <li>
-                <a href="{{ link.url }}" target="_blank" title='{{ link.name }}'>
+                <a href="{{ link.url | default(value='javascript: void(0);') }}" 
+                    target="{{ target_sub }}" 
+                    title="{{ link.name }}">
                     <i class="{{ link.icon | default(value='') }} icon-fw mr-2"></i>
                     <span> {{ link.name }}</span>
                 </a>

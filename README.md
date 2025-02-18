@@ -1,6 +1,6 @@
 # NavHive
 
-> NavHive 是一个简洁、优雅且高效的 Zola 网址导航主题
+> NavHive 是一个简洁、优雅且高效的 [**Zola**](https://www.getzola.org/) 网址导航主题
 
 ## 特征
 
@@ -18,7 +18,7 @@
 ## 演示
 
 - 演示网站   
-  https://nav.idev.top
+  https://navgo.idev.top
 - 本地演示   
   ```sh
   zola serve

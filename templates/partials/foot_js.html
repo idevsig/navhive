@@ -10,5 +10,5 @@
 
 {# Load all jsFiles #}
 {%- for jsFile in jsFiles %}
-  <script src="{{ get_url(path=jsFile, cachebust=true) | safe }}"></script>
+  <script src="{{ jsFile | safe }}"></script>
 {%- endfor %}

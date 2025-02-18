@@ -5,25 +5,30 @@
             {% if data %}
             <ul>
                 {% for taxonomy_item in data %}
+                {% if taxonomy_item.list[0].links[0].title %}
+                {% set index = loop.index %}
+                {% set hash_str = index ~ "-main-" ~ taxonomy_item.taxonomy %}
+                {% set hash_str_sha = get_hash(literal=hash_str, sha_type=256, base64=false) | safe %}
                 <li class="sidebar-item">
-                    <a href="#category-{{ get_hash(literal=taxonomy_item.taxonomy, sha_type=256, base64=false) | safe }}" class="smooth">
+                    <a href="#category-{{ hash_str_sha }}" class="smooth">
                         <i class="{{ taxonomy_item.icon | default(value='') }} icon-fw icon-lg mr-2"></i>
                         <span>{{ taxonomy_item.taxonomy }}</span>
                     </a>
                     {% set list = taxonomy_item.list %}
-                    {% if list %}
                     <ul>
                         {% for item in list %}
+                        {% set hash_str_sub = index ~ "-" ~ loop.index ~ "-child-" ~ item.term %}
+                        {% set hash_str_sub_sha = get_hash(literal=hash_str_sub, sha_type=256, base64=false) | safe %}
                         <li>
-                            <a href="#category-{{ get_hash(literal=item.term, sha_type=256, base64=false) | safe }}" class="smooth">
+                            <a href="#category-{{ hash_str_sub_sha }}" class="smooth">
                                 <i class="{{ item.icon | default(value='') }} icon-fw icon-lg mr-2"></i>
                                 <span>{{ item.term }}</span>
                             </a>
                         </li>
                         {% endfor %}
                     </ul>
-                    {% endif %}
-                </li>                
+                </li> 
+                {% endif %}               
                 {% endfor %}
             </ul>
             {% endif %}

@@ -1,7 +1,7 @@
 {# Favicon #}
 {% set favicon = config.extra.images.favicon %}
 {% if favicon %}
-    <link rel="shortcut icon" type="image/x-icon" href="{{ get_url(path=favicon) }}" />
+    <link rel="shortcut icon" type="image/x-icon" href="{{ favicon | safe }}" />
 {% endif %}
 
 {# Define array of CSS files to load. main.css is always loaded. #}
@@ -15,5 +15,5 @@
 
 {# Load all stylesheets #}
 {%- for stylesheet in stylesheets %}
-    <link rel="stylesheet" href="{{ get_url(path=stylesheet, cachebust=true) | safe }}" />
+    <link rel="stylesheet" href="{{ stylesheet | safe }}" />
 {%- endfor %}
