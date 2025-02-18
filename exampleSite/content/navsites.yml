@@ -33,7 +33,7 @@
           description: （国外）作品项目代码开源
         - title: 微信公众号
           logo: weixin.png
-          favicon:
+          favicon: https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png
           description: 爱开发微信公众号
           qrcode: assets/images/weixin.png
         - title: 头条号

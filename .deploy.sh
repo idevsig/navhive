@@ -9,12 +9,20 @@ IN_CHINA="${CHINA:-}"
 COMMIT_MSG="" # 提交信息
 PUBLISH_DIR=""  # 发布目录
 PROJECT_NAME="" # 项目名称
-GIT_BRANCH_NAME="${CI_COMMIT_BRANCH:-$(git rev-parse --abbrev-ref HEAD)}" # 分支名称
+
+GIT_BRANCH_NAME="${CI_COMMIT_BRANCH:-}"
+if [ -z "$GIT_BRANCH_NAME" ]; then
+  if git rev-parse --verify HEAD >/dev/null 2>&1; then
+    GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+  else
+    GIT_BRANCH_NAME="main"
+  fi
+fi
 
 DEPLOY=""      # 部署
 
 readonly ICON_DIR="static/assets/images/logos"
-readonly WEBSTACK_FILE="./data/webstack.yml"
+readonly NAVSITES_FILE="./content/navsites.yml"
 readonly SYNC_FILE=".sync.txt"
 readonly SYNC_FILE_ERROR_LOG="$SYNC_FILE.error.log"
 
@@ -81,7 +89,7 @@ EOF
 
 # 获取发布目录
 get_publish_dir() {
-  PUBLISH_DIR="$(grep publishDir config.toml | awk -F '\"' '{print $2}')" # static files
+  PUBLISH_DIR="$(grep output_dir config.toml | awk -F '\"' '{print $2}')" # static files
 }
 
 # 获取项目名称
@@ -296,7 +304,7 @@ process_icons() {
   if [ -z "$url" ] && [ -z "$favicon_url" ]; then
     return
   fi
-  
+
   # 生成文件名
   local cleaned_name
   cleaned_name=$(echo "$logo" | tr -d '[:space:]')
@@ -381,7 +389,7 @@ process_webstack() {
               current_block[favicon]=${BASH_REMATCH[1]}
           fi
       fi
-  done < "$WEBSTACK_FILE"
+  done < "$NAVSITES_FILE"
 
   # 输出最后一个块的 logo、url 和 favicon
   if [[ $in_block -eq 1 ]]; then
@@ -418,7 +426,7 @@ main() {
     fi
   fi
 
-  # remove hugo old data
+  # remove zola old data
   rm -rf "$PUBLISH_DIR"  
 
   echo
@@ -429,11 +437,10 @@ main() {
   echo "GIT_BRANCH_NAME: $GIT_BRANCH_NAME"
   echo
 
-  # hugo gen data
-  hugo --minify
+  zola build
 
   if [ ! -d "$PUBLISH_DIR" ]; then
-      echo -e "\033[31mpublishDir $PUBLISH_DIR not found\033[0m"
+      echo -e "\033[31moutput_dir $PUBLISH_DIR not found\033[0m"
       exit 1
   fi    
 

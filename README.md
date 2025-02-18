@@ -11,6 +11,10 @@
 - 支持 [**Bootstrap Icons 1.11.3**](https://icons.getbootstrap.com/) 图标
 - 支持 51.LA 网站统计
 
+## 预览图
+
+![Zola NavHive 主题](screenshot.png)
+
 ## 演示
 
 - 演示网站   
@@ -122,6 +126,11 @@ zola serve
 7. 构建项目
 ```sh
 zola build
+```
+
+8. *复制其它文件
+```sh
+cp themes/navhive/{.gitignore,.deploy.sh} . 
 ```
 
 ## 获取 ICON 图标
