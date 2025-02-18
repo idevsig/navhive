@@ -1,7 +1,7 @@
 <div class="sidebar-menu flex-fill">
     <div class="sidebar-scroll">
         <div class="sidebar-menu-inner">
-            {% set data = load_data(path="data/webstack.yml", format="yaml") %}
+            {% set data = load_data(path="content/navsites.yml", format="yaml") %}
             {% if data %}
             <ul>
                 {% for taxonomy_item in data %}

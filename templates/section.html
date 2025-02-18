@@ -4,7 +4,7 @@
 
 {# 主体内容 #}
 <div id="content" class="content-site customize-site">
-	{% set data = load_data(path="data/webstack.yml", format="yaml") %}
+	{% set data = load_data(path="content/navsites.yml", format="yaml") %}
 	{% if data %}
 	{% for taxonomy_item in data %}
 	<div class="d-flex flex-fill" id="category-{{ get_hash(literal=taxonomy_item.taxonomy, sha_type=256, base64=false) | safe }}">

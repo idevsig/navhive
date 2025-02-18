@@ -16,15 +16,23 @@
 - 演示网站   
   https://nav.idev.top
 - 本地演示   
+  ```sh
+  zola serve
+  ```
+
+## 使用教程
+
+1. 创建新项目
 ```sh
-zola serve
+mkdir mynav
+cd mynav
+git init
 ```
 
-## 安装
+2. 安装此主题
 
-**安装此主题**
+> 在项目根目录下运行：
 
-在项目根目录下运行：
 ```sh
 # 添加主题（未添加此主题时）
 git submodule add https://github.com/idevsig/navhive.git themes/navhive
@@ -39,19 +47,17 @@ git submodule update --remote themes/navhive
 git submodule foreach git pull origin main
 ```
 
-## 使用
-
-1. 复制 `exampleSite`   
+3. 复制 `exampleSite`   
 ```sh
 cp -r themes/navhive/exampleSite/* .
 ```
 
-2. 设置数据
+4. 设置数据
 ```sh
-data
+content
 ├── friendlinks.yml # 友情链接（左下）
 ├── headers.yml     # 顶部导航（顶部）
-└── webstack.yml    # 网址列表 （中间）
+└── navsites.yml    # 网址列表 （中间）
 ```
 
 - `friendlinks.yml` 格式：
@@ -74,7 +80,7 @@ data
       url: "https://git.jetsung.com/jetsung"
 ```
 
-- `webstack.yml` 格式：
+- `navsites.yml` 格式：
 ```yaml
 - taxonomy: 杰森
   icon: bi bi-star-fill
@@ -101,10 +107,46 @@ data
           qrcode: # 二维码
 ```
 
-4. 图标保存地址（根据 `config.toml` 的 `logosPath` 参数）
+5. *图标保存位置（根据 `config.toml` 的 `logosPath` 参数）
 ```sh
 mkdir -p static/assets/images/logos
 ```
+
+> 可自行将网站的图标保存至此处。可参考 [`.deploy.sh`](.deploy.sh)，通过 API 方式获取图标。
+
+6. 运行本地测试
+```sh
+zola serve
+```
+
+7. 构建项目
+```sh
+zola build
+```
+
+## 获取 ICON 图标
+
+> 需要配合 `.deploy.sh` 使用。   
+> 先修改 `logo:` 部分的文件名，以提供下述方式 `favicon:` 保存。
+
+1. 从 Google
+   ```sh
+   # favicon: <URL>
+
+   https://www.google.com/s2/favicons?sz=48&domain_url=https%3A%2F%2Fwww.idev.top
+
+   # 或直接
+   https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.idev.top&size=48
+   https://t3.gstatic.cn/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://www.idev.top&size=48
+   ```
+
+2. 从自建方式获取
+    ```sh
+    # favicon: <URL>
+    ```
+    - 自建方式一（PHP）:<https://github.com/deploybox/GetFavicon>
+    - 自建方式二（PHP）:<https://github.com/deploybox/FetchFavicon>
+    - 自建方式三（CloudFlare）:<https://github.com/Aetherinox/searxico-worker>
 
 ## 仓库镜像
 

@@ -1,10 +1,8 @@
 .vscode/
 .wrangler/
 .sync.*
-.hugo_build.lock
 
 /public
 /docs
 
 exampleSite/public/
-exampleSite/.hugo_build.lock

@@ -3,7 +3,7 @@
 </h4>
 <div class="friendlink text-xs card">
     <div class="card-body">
-        {% set data = load_data(path="data/friendlinks.yml", format="yaml") %}
+        {% set data = load_data(path="content/friendlinks.yml", format="yaml") %}
         {% if data %}
             {% for item in data %}        
             <a href="{{ item.url }}" title="{{ item.description }}" target="_blank">{{ item.title }}</a>
