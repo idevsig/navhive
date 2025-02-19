@@ -4,9 +4,9 @@
 
 <a href="" class="navbar-brand d-md-none">
     {% if logoExpandLight %}
-    <img src="{{ get_url(path=logoExpandLight, cachebust=true) | safe }}" title="{{ title }}"  class="logo-light">
+    <img src="{{ logoExpandLight | safe }}" title="{{ title }}"  class="logo-light">
     {% endif %}
     {% if logoExpandDark %}
-    <img src="{{ get_url(path=logoExpandDark, cachebust=true) | safe }}" title="{{ title }}" class="logo-dark d-none">
+    <img src="{{ logoExpandDark | safe }}" title="{{ title }}" class="logo-dark d-none">
     {% endif %}
 </a>

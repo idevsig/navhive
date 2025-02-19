@@ -12,9 +12,7 @@
     {% set hash_str = index ~ "-main-" ~ taxonomy_item.taxonomy %}
     {% set hash_str_sha = get_hash(literal=hash_str, sha_type=256, base64=false) | safe %}
         <div class="d-flex flex-fill" id="category-{{ hash_str_sha }}">
-            <h4 class="text-gray text-lg mb-2">
-                <i class="{{ taxonomy_item.icon | default(value='') }} fa-lg icon-fw icon-lg mr-2"></i>{{ taxonomy_item.taxonomy }}
-            </h4>
+            <h4 class="text-gray text-lg mb-2">{% if taxonomy_item.icon %}<i class="{{ taxonomy_item.icon }} fa-lg icon-fw icon-lg mr-2"></i>{% endif %}{{ taxonomy_item.taxonomy }}</h4>
             <div class="flex-fill"></div>
         </div>
         {% set list = taxonomy_item.list %}

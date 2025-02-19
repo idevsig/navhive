@@ -8,18 +8,18 @@
     <div class="logo overflow-hidden">
         <a href="/" class="logo-expanded">
             {% if logoExpandLight %}
-            <img src="{{ get_url(path=logoExpandLight, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-light">
+            <img src="{{ logoExpandLight | safe }}" title="{{ title }}" height="40" class="logo-light">
             {% endif %}
             {% if logoExpandDark %}
-            <img src="{{ get_url(path=logoExpandDark, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-dark d-none">
+            <img src="{{ logoExpandDark | safe }}" title="{{ title }}" height="40" class="logo-dark d-none">
             {% endif %}
         </a>
         <a href="/" class="logo-collapsed">
             {% if logoCollapseLight %}
-            <img src="{{ get_url(path=logoCollapseLight, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-light">
+            <img src="{{ logoCollapseLight | safe }}" title="{{ title }}" height="40" class="logo-light">
             {% endif %}
             {% if logoCollapseDark %}
-            <img src="{{ get_url(path=logoCollapseDark, cachebust=true) | safe }}" title="{{ title }}" height="40" class="logo-dark d-none">
+            <img src="{{ logoCollapseDark | safe }}" title="{{ title }}" height="40" class="logo-dark d-none">
             {% endif %}
         </a>
     </div>

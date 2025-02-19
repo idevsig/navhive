@@ -11,7 +11,10 @@
     {% endif %}
     <li class="menu-item-has-children">
         <a href="{{ item.link | default(value='javascript: void(0);') }}" target="{{ target }}" title='{{ item.item }}'>
-            <i class="{{ item.icon | default(value='') }} icon-fw mr-2"></i>
+            {% if item.icon %}
+            <i class="{{ item.icon }} icon-fw mr-2"></i>
+            {% endif %}
+
             <span>{{ item.item }}</span>
         </a>
         {% if item.list %}

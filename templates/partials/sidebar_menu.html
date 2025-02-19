@@ -11,7 +11,7 @@
                 {% set hash_str_sha = get_hash(literal=hash_str, sha_type=256, base64=false) | safe %}
                 <li class="sidebar-item">
                     <a href="#category-{{ hash_str_sha }}" class="smooth">
-                        <i class="{{ taxonomy_item.icon | default(value='') }} icon-fw icon-lg mr-2"></i>
+                        {% if taxonomy_item.icon %}<i class="{{ taxonomy_item.icon }} icon-fw icon-lg mr-2"></i>{% endif %}
                         <span>{{ taxonomy_item.taxonomy }}</span>
                     </a>
                     {% set list = taxonomy_item.list %}
@@ -21,7 +21,7 @@
                         {% set hash_str_sub_sha = get_hash(literal=hash_str_sub, sha_type=256, base64=false) | safe %}
                         <li>
                             <a href="#category-{{ hash_str_sub_sha }}" class="smooth">
-                                <i class="{{ item.icon | default(value='') }} icon-fw icon-lg mr-2"></i>
+                                {% if item.icon %}<i class="{{ item.icon }} icon-fw icon-lg mr-2"></i>{% endif %}
                                 <span>{{ item.term }}</span>
                             </a>
                         </li>
