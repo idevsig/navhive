@@ -18,7 +18,7 @@
 ## 演示
 
 - 演示网站   
-  https://navgo.idev.top
+  https://navhive.skiy.net
 - 本地演示   
   ```sh
   zola serve
