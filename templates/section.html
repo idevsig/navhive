@@ -6,121 +6,13 @@
 <div id="content" class="content-site customize-site">
 	{% set data = load_data(path="content/navsites.yml", format="yaml") %}
 	{% if data %}
-	{% for taxonomy_item in data %}
-    {% if taxonomy_item.list[0].links[0].title %}
-    {% set index = loop.index %}
-    {% set hash_str = index ~ "-main-" ~ taxonomy_item.taxonomy %}
-    {% set hash_str_sha = get_hash(literal=hash_str, sha_type=256, base64=false) | safe %}
-        <div class="d-flex flex-fill" id="category-{{ hash_str_sha }}">
-            <h4 class="text-gray text-lg mb-2">{% if taxonomy_item.icon %}<i class="{{ taxonomy_item.icon }} fa-lg icon-fw icon-lg mr-2"></i>{% endif %}{{ taxonomy_item.taxonomy }}</h4>
-            <div class="flex-fill"></div>
-        </div>
-        {% set list = taxonomy_item.list %}
-        <div class="d-flex flex-fill flex-tab align-items-center">
-            <div class="overflow-x-auto slider_menu mini_tab" slidertab="sliderTab">
-                <ul class="nav nav-pills menu" role="tablist">
-                    {% for item in list %}
-                    {% set hash_str_sub = index ~ "-" ~ loop.index ~ "-child-" ~ item.term %}
-                    {% set hash_str_sub_sha = get_hash(literal=hash_str_sub, sha_type=256, base64=false) | safe %}
-                    <li class="pagenumber nav-item" data-id="{{ hash_str_sub_sha }}" more='0'>
-                        <a id="category-{{ hash_str_sub_sha }}" 
-                            href="#tab-{{ hash_str_sub_sha }}"
-                            class="nav-link {% if loop.first %}active{% endif %}" 
-                            data-toggle="pill">
-                            {{ item.term }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class='flex-fill'></div>
-        </div>
-
-        <div class="tab-content mt-2">
-            {% for item in list %}
-            {% set idx = loop.index %}
-            {% set hash_str_sub = index ~ "-" ~ loop.index ~ "-child-" ~ item.term %}
-            {% set hash_str_sub_sha = get_hash(literal=hash_str_sub, sha_type=256, base64=false) | safe %}
-            <div id="tab-{{ hash_str_sub_sha }}" 
-                class="tab-pane {% if loop.first %}active{% endif %}" load="1">
-                <div id="{{ hash_str_sub_sha }}"
-                    class="row sortable row-{{ hash_str_sub_sha }}">
-                    {% for ele in item.links %}
-                    {% set i = loop.index %}
-                    {% set index_id = "index-" ~ index ~ "-" ~ idx ~ "-" ~ i %}
-                    <div class="url-card col-6 col-sm-6 col-md-4 col-xl-5a col-xxl-6a" id="{{ index_id }}">
-                        <div class="url-body default">
-                            {% if ele.qrcode %}
-                            <a href="javascript: void(0);" 
-                                class="card no-c mb-4" 
-                                alt="{{ ele.title }}" 
-                                data-toggle="tooltip" 
-                                data-placement="bottom" 
-                                data-html="true" 
-                                rel="noopener noreferrer"
-                                title="<img src='{{ ele.qrcode }}' width='128'>">
-                            {% else %}	
-                            <a href="{{ ele.url | default(value='')}}" 
-                                target="_blank" 
-                                alt="{{ ele.title }}"  
-                                title="{{ ele.description }}"
-                                class="card no-c mb-4" 
-                                data-url="{{ ele.url }}" 
-                                data-placement="bottom" 
-                                data-toggle="tooltip"
-                                rel="noopener noreferrer">
-                            {% endif %}
-                                <div class="card-body">
-                                    <div class="url-content d-flex align-items-center">
-                                        <div class="url-img mr-2 d-flex align-items-center justify-content-center">
-                                            {% set defaultLogo = config.extra.images.defaultLogo %}
-                                            {% set logoUrl = ele.logo | default(value='') %}
-                                            {% if logoUrl is starting_with("http") %}
-                                            <img class="lazy" 
-                                                src="{{ logoUrl }}" 
-                                                data-src="{{ logoUrl }}" 
-                                                onerror="javascript: this.src='{{ defaultLogo }}'"
-                                                alt="{{ ele.title }}">
-                                            {% else %}
-                                                {% if logoUrl %}
-                                                <img class="lazy" 
-                                                    src="{{ config.extra.images.logosPath }}/{{ logoUrl }}" 
-                                                    onerror="javascript: this.src='{{ defaultLogo }}'"
-                                                    alt="{{ ele.title }}">
-                                                {% else %}
-                                                <img class="lazy" src="{{ defaultLogo }}" alt="{{ ele.title }}">
-                                                {% endif %}
-                                            {% endif %}                                        
-                                        </div>
-                                        <div class="url-info flex-fill">
-                                            <div class="text-sm overflowClip_1">
-                                                <strong>{{ ele.title }}</strong>
-                                            </div>
-                                            <p class="overflowClip_1 m-0 text-muted text-xs">{{ ele.description }}</p>
-                                        </div>
-                                    </div>
-                                </div>                        
-                            </a>   
-                            <a href="{{ ele.url | default(value='') }}" 
-                                class="togo text-center text-muted is-views" 
-                                data-id="689" 
-                                data-toggle="tooltip" 
-                                data-placement="right" 
-                                title="直达" 
-                                rel="nofollow">
-                                <i class="far fa-arrow-alt-circle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div> 
-            {% endfor %}
-        </div>
+        {# 卡片模式 #}
+        {% if config.extra.cardMode %}
+            {% include "main/card.html" ignore missing %}
+        {% else %}
+            {% include "main/content.html" ignore missing %}
+        {% endif %}
     {% endif %}
-	{% endfor %} 
-	{% endif %} 
-
 	{% include "partials/friends.html" ignore missing %}
 </div>
 

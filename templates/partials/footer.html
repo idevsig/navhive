@@ -18,7 +18,7 @@
 		<div class="footer-text">
 			{% set copyright = footer.copyright %}
 			{% if not copyright %}
-				&copy; {{ now() | date(format="%Y") }} Powered by <a href="https://www.getzola.org/" target="_blank" rel="noopener">Zola</a> &amp; <a href="https://github.com/idevsig/navside" target="_blank" rel="noopener" title="NavSide">NavSide</a>
+				&copy; {{ now() | date(format="%Y") }} Powered by <a href="https://www.getzola.org/" target="_blank" rel="noopener">Zola</a> &amp; <a href="https://github.com/idevsig/navhive" target="_blank" rel="noopener" title="NavHive">NavHive</a>
 			{% else %}
 				{{ copyright | replace(from="{year}", to=now() | date(format="%Y")) | markdown | safe }}
 			{% endif %}

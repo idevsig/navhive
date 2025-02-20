@@ -1,0 +1,44 @@
+{% set defaultLogo = config.extra.images.defaultLogo %}
+{% set logosPath = config.extra.images.logosPath %}
+
+{% for taxonomy_item in data %}
+    {% if taxonomy_item.list[0].links[0].title %}
+        {% set index = loop.index %}
+        {% set hash_str = index ~ "-main-" ~ taxonomy_item.taxonomy %}
+        {% set hash_str_sha = get_hash(literal=hash_str, sha_type=256, base64=false) | safe %}
+        {# 一级分类 #}
+        {% include "main/component/top.html" ignore missing %}
+
+        {% for item in taxonomy_item.list %}
+        {% set idx = loop.index %}
+        {% set hash_str_sub = index ~ "-" ~ idx ~ "-child-" ~ item.term %}
+        {% set hash_str_sub_sha = get_hash(literal=hash_str_sub, sha_type=256, base64=false) | safe %}
+            {# 二级分类 #}
+            <div class="d-flex flex-fill flex-tab align-items-center">
+                <div class="overflow-x-auto slider_menu mini_tab" slidertab="sliderTab">
+                    <ul class="nav nav-pills menu" role="tablist">
+                        <li class="pagenumber nav-item" more='0'>
+                            <a id="category-{{ hash_str_sub_sha }}"
+                                class="nav-link"
+                                data-toggle="pill-none"
+                                href="javascript: void(0);">{{ item.term }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class='flex-fill'></div>
+            </div>   
+            
+            <div class="tab-content mt-2">
+                <div id="tab-{{ hash_str_sub_sha }}" class="tab-pane active" load="1">
+                    <div id="{{ hash_str_sub_sha }}" class="row sortable row-{{ hash_str_sub_sha }}">
+                        {% for ele in item.links %}
+                            {% set i = loop.index %}
+                            {% set index_id = "index-" ~ index ~ "-" ~ idx ~ "-" ~ i %}
+                            {% include "main/component/grid.html" ignore missing %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}   
+    {% endif %}
+{% endfor %}
