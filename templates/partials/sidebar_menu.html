@@ -13,6 +13,7 @@
                     <a href="#category-{{ hash_str_sha }}" class="smooth">
                         {% if taxonomy_item.icon %}<i class="{{ taxonomy_item.icon }} icon-fw icon-lg mr-2"></i>{% endif %}
                         <span>{{ taxonomy_item.taxonomy }}</span>
+                        <i class="fas fa-angle-right sidebar-more text-sm"></i>
                     </a>
                     {% set list = taxonomy_item.list %}
                     <ul>

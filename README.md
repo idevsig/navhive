@@ -116,7 +116,7 @@ content
 mkdir -p static/assets/images/logos
 ```
 
-> 可自行将网站的图标保存至此处。可参考 [`.deploy.sh`](.deploy.sh)，通过 API 方式获取图标。
+> 可自行将网站的图标保存至此处。可参考 [`.deploy.sh`](.deploy.sh#L275)，通过 API 方式获取图标。
 
 6. 运行本地测试
 ```sh

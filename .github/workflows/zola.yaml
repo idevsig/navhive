@@ -52,16 +52,13 @@ jobs:
 
       - name: Build with Zola
         env:
-          TZ: America/Los_Angeles
+          TZ: CST-8
           GIT_REPO_URL: ${{ github.server_url }}/${{ github.repository }}.git
         run: |
           mkdir pages
           cd pages
-
           git clone --depth=1 "$GIT_REPO_URL" themes/navhive
-
           rsync -av --progress themes/navhive/exampleSite/ . --exclude .git
-
           zola build
 
       - name: Upload artifact
